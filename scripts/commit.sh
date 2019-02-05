@@ -13,6 +13,7 @@ BRANCH=${BRANCH:-"default-branch"}
 CHANGES=$(git status --porcelain --untracked-files=all)
 
 if [ -n "${CHANGES}" ]; then
-  git push origin "${BRANCH}"
-  hub pull-request
+  git checkout -b "${BRANCH}"
+  git add -A
+  git commit
 fi

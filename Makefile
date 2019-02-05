@@ -13,6 +13,10 @@ init:
 deinit:
 	git submodule deinit --all -f
 
+.PHONY: commit
+commit:
+	git submodule foreach "BRANCH=$(BRANCH) $(CURDIR)/scripts/commit.sh"
+
 .PHONY: release
 release:
 	git submodule foreach "BRANCH=$(BRANCH) $(CURDIR)/scripts/submit-pull-requests.sh"
