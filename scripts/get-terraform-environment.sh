@@ -10,6 +10,7 @@ ROOT_DIR="${CURRENT_DIR}/.."
 . "${ROOT_DIR}/PACKAGE"
 
 TARGET_DIR=$(mktemp -d "${ROOT_DIR}/${DIST_DIR}/terraform-XXXXXX")
+TARGET_OUTPUT=$(mktemp)
 
 echo "Creating environment in ${TARGET_DIR}"
 
@@ -26,7 +27,12 @@ for provider in $(git status -s | grep -E 'modules|examples' | cut -d / -f 2 | g
 do
   cd "${TARGET_DIR}/examples/${provider}";
   terraform init;
-  echo "--------------------------------------------------------------------"
-  echo "$(echo ${provider} | tr a-z A-Z): ${TARGET_DIR}/examples/${provider}"
-  echo "--------------------------------------------------------------------"
+  cat >> ${TARGET_OUTPUT} <<EOF
+--------------------------------------------------------------------
+$(echo ${provider} | tr a-z A-Z): ${TARGET_DIR}/examples/${provider}
+--------------------------------------------------------------------
+EOF
 done
+
+# Print Output
+cat ${TARGET_OUTPUT}
