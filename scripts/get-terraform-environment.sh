@@ -2,6 +2,7 @@
 
 set -o errexit -o nounset -o pipefail
 
+DEFAULT_PROVIDER=aws
 CURRENT_DIR="$(cd "$(dirname "$0")"; pwd -P)"
 ROOT_DIR="${CURRENT_DIR}/.."
 
@@ -9,6 +10,7 @@ ROOT_DIR="${CURRENT_DIR}/.."
 . "${ROOT_DIR}/PACKAGE"
 
 TARGET_DIR=$(mktemp -d "${ROOT_DIR}/${DIST_DIR}/terraform-XXXXXX")
+TARGET_OUTPUT=$(mktemp)
 
 echo "Creating environment in ${TARGET_DIR}"
 
@@ -21,8 +23,15 @@ rsync -rv --exclude=.git "${ROOT_DIR}/modules" "${TARGET_DIR}"
 # Copy examples.
 rsync -rv "${ROOT_DIR}/examples" "${TARGET_DIR}"
 
-cd "${TARGET_DIR}/examples/aws"
-terraform init
+for provider in $(git status -s | grep -E 'modules|examples' | cut -d / -f 2 | grep -vE 'null|template|localfile' | sort | uniq | sed s/^$/${DEFAULT_PROVIDER}/g);
+do
+  cd "${TARGET_DIR}/examples/${provider}";
+  terraform init;
+  cat >> ${TARGET_OUTPUT} <<EOF
+--------------------------------------------------------------------
+$(echo ${provider} | tr a-z A-Z): ${TARGET_DIR}/examples/${provider}
+EOF
+done
 
-echo "-----------------------------------------------"
-echo "AWS: ${TARGET_DIR}/examples/aws"
+# Print Output
+cat ${TARGET_OUTPUT}
