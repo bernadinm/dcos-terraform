@@ -4,13 +4,17 @@ provider "google" {
   region      = "us-west1"
 }
 
+data "http" "whatismyip" {
+  url = "http://whatismyip.akamai.com/"
+}
+
 module "dcos" {
   source  = "../../modules/gcp/dcos"
-  version = "~> 0.1"
+  version = "~> 0.2"
 
   cluster_name        = "dcos-terraform-test"
   ssh_public_key_file = "./ssh-key.pub"
-  admin_ips           = ["0.0.0.0/0"]
+  admin_ips           = ["${data.http.whatismyip.body}/32"]
 
   num_masters        = "1"
   num_private_agents = "1"
