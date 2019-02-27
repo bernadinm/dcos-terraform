@@ -23,7 +23,7 @@ rsync -rv --exclude=.git "${ROOT_DIR}/modules" "${TARGET_DIR}"
 # Copy examples.
 rsync -rv "${ROOT_DIR}/examples" "${TARGET_DIR}"
 
-for provider in $(git status -s | grep -E 'modules|examples' | cut -d / -f 2 | grep -vE 'null|template|localfile' | sort | uniq | sed s/^$/${DEFAULT_PROVIDER}/g);
+for provider in $(git status -s | grep -E 'modules|examples' | cut -d / -f 2 | grep -vE 'null|template|localfile|.git*' | sort | uniq | sed s/^$/${DEFAULT_PROVIDER}/g);
 do
   cd "${TARGET_DIR}/examples/${provider}";
   terraform init;
