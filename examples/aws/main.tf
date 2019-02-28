@@ -12,7 +12,7 @@ module "dcos" {
   source  = "../../modules/aws/dcos"
   version = "~> 0.1"
 
-  cluster_name        = "dcos-terraform-test"
+  cluster_name        = "mbernadin"
   ssh_public_key_file = "./ssh-key.pub"
   admin_ips           = ["${data.http.whatismyip.body}/32"]
 
@@ -23,7 +23,7 @@ module "dcos" {
   # masters_private_ip_list = ["172.12.0.4","172.12.0.5","172.12.0.6"] # example (non working)
 
   dcos_version = "1.10.9"
-  custom_dcos_download_path = "<INSERT_DCOS_1.10.9_DOWNLOAD.SH>"
+  custom_dcos_download_path = "PLEASE_PROVIDE_DCOS_1.10.9_DOWNLOAD.SH_IN_MAIN.TF"
 
   #dcos_instance_os    = "rhel_7.6"
   dcos_instance_os    = "coreos_1632.3.0"
@@ -59,3 +59,4 @@ output "public-agents-loadbalancer" {
 output "masters-private-ips" {
   value = "${module.dcos.masters-private-ips}"
 }
+
