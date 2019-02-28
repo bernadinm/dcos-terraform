@@ -20,7 +20,7 @@ module "dcos" {
   num_private_agents = "1"
   num_public_agents  = "1"
 
-  masters_private_ip_list = ["172.12.0.4","172.12.0.5","172.12.0.6"]
+  # masters_private_ip_list = ["172.12.0.4","172.12.0.5","172.12.0.6"] # example (non working)
 
   dcos_version = "1.10.9"
   custom_dcos_download_path = "<INSERT_DCOS_1.10.9_DOWNLOAD.SH>"
