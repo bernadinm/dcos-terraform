@@ -18,7 +18,7 @@ module "dcos" {
 
   num_masters        = "3"
   num_private_agents = "1"
-  num_public_agents  = "0"
+  num_public_agents  = "1"
 
   masters_private_ip_list = ["172.12.0.4","172.12.0.5","172.12.0.6"]
 
