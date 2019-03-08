@@ -102,6 +102,14 @@ If you need to revert back to any reason, here is the command:
 $ make http-git
 ```
 
+### Fetch Latest Modules Branches
+
+If you need to update the module to have the latest commits you can run this command:
+
+```bash
+# make master
+```
+
 ## Modules Layout
 
 The Terraform modules in this repository follow this layout:

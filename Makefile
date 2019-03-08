@@ -7,7 +7,11 @@ BRANCH ?= $(shell git rev-parse --abbrev-ref HEAD)
 
 .PHONY: init
 init:
-	git submodule update --init
+	git submodule update --init --recursive
+
+.PHONY: master
+master:
+	git submodule update --remote
 
 .PHONY: deinit
 deinit:
