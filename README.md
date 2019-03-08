@@ -107,7 +107,7 @@ $ make http-git
 If you need to update the module to have the latest commits you can run this command:
 
 ```bash
-# make master
+$ make master
 ```
 
 ## Modules Layout
