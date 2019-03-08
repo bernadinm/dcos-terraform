@@ -1,4 +1,3 @@
-        branch = master
 [submodule "localfile/dcos-ansible-bridge"]
 	path = modules/localfile/dcos-ansible-bridge
 	url = https://github.com/dcos-terraform/terraform-localfile-dcos-ansible-bridge
