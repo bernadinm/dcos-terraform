@@ -17,11 +17,11 @@ module "dcos" {
 
   dcos_version = "1.12.1"
 
-  dcos_instance_os    = "centos_7.5"
-  bootstrap_instance_type = "t2.medium"
-  masters_instance_type  = "t2.medium"
+  dcos_instance_os             = "centos_7.5"
+  bootstrap_instance_type      = "t2.medium"
+  masters_instance_type        = "t2.medium"
   private_agents_instance_type = "t2.medium"
-  public_agents_instance_type = "t2.medium"
+  public_agents_instance_type  = "t2.medium"
 
   providers = {
     aws = "aws"

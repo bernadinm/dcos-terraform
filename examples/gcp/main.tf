@@ -1,7 +1,7 @@
 # Configure the Google Cloud provider
 provider "google" {
-  project     = ""
-  region      = "us-west1"
+  project = ""
+  region  = "us-west1"
 }
 
 module "dcos" {
@@ -18,7 +18,7 @@ module "dcos" {
 
   dcos_version = "1.12.1"
 
-  dcos_instance_os    = "centos_7.5"
+  dcos_instance_os = "centos_7.5"
 
   providers = {
     google = "google"

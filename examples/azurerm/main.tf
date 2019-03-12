@@ -1,6 +1,6 @@
 variable "dcos_install_mode" {
   description = "specifies which type of command to execute. Options: install or upgrade"
-  default = "install"
+  default     = "install"
 }
 
 data "http" "whatismyip" {
@@ -31,11 +31,11 @@ module "dcos" {
 }
 
 output "masters-ips" {
-  value       = "${module.dcos.masters-ips}"
+  value = "${module.dcos.masters-ips}"
 }
 
 output "cluster-address" {
-  value       = "${module.dcos.masters-loadbalancer}"
+  value = "${module.dcos.masters-loadbalancer}"
 }
 
 output "public-agents-loadbalancer" {
