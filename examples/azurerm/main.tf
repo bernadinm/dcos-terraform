@@ -13,7 +13,7 @@ module "dcos" {
 
   dcos_instance_os    = "coreos_1855.5.0"
   cluster_name        = "my-dcos"
-  ssh_public_key_file = "<path-to-public-key-file>"
+  ssh_public_key_file = "./ssh-key.pub"
   admin_ips           = ["${data.http.whatismyip.body}/32"]
   location            = "West US"
 
