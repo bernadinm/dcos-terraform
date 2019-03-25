@@ -4,7 +4,6 @@
 properties([ parameters([
   string( name: 'AWS_ACCESS_KEY_ID', defaultValue: ''),
   string( name: 'AWS_SECRET_ACCESS_KEY', defaultValue: '')
-  string( name: 'AWS_SESSION_TOKEN', defaultValue: '')
 ]), pipelineTriggers([]) ])
 
 // Environment Variables
@@ -37,6 +36,6 @@ node {
    //      to: "devopsteam@example.com",
    //      subject: "Terraform build complete",
    //      body: "Jenkins job ${env.JOB_NAME} - build ${env.BUILD_NUMBER} complete"
-   true
+   echo "Just say done!"
   }
 }
