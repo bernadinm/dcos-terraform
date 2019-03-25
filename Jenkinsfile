@@ -13,10 +13,10 @@ env.AWS_SECRET_ACCESS_KEY = AWS_SECRET_ACCESS_KEY
 pipeline {
     agent none
     stages {
-        stage ('Checkout') {
-          agent { label 'terraform' }
-          checkout scm
-        }
+//        stage ('Checkout') {
+//          agent { label 'terraform' }
+//          checkout scm
+//        }
         stage('Terraform FMT') {
             agent { label 'terraform' }
             steps {
