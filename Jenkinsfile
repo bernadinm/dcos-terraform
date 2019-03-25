@@ -49,13 +49,5 @@ pipeline {
                 sh 'tfdescsan --test --tsv https://dcos-terraform-mappings.mesosphere.com/ --var outputs.tf --cloud "$(echo ${JOB_NAME##*/terraform-} | sed -E "s/(rm)?-.*//")"'
             }
         }
-        stage ('Notification') {
-         // mail from: "jenkins@example.com",
-         //      to: "devopsteam@example.com",
-         //      subject: "Terraform build complete",
-         //      body: "Jenkins job ${env.JOB_NAME} - build ${env.BUILD_NUMBER} complete"
-         echo "Just say done!"
-        }
     }
 }
-
