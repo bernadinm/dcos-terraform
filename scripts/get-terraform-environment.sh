@@ -2,7 +2,7 @@
 
 set -o errexit -o nounset -o pipefail
 
-DEFAULT_PROVIDER=aws
+DEFAULT_PROVIDER=${PROVIDER:=aws}
 CURRENT_DIR="$(cd "$(dirname "$0")"; pwd -P)"
 ROOT_DIR="${CURRENT_DIR}/.."
 
@@ -23,6 +23,7 @@ rsync -rv --exclude=.git "${ROOT_DIR}/modules" "${TARGET_DIR}"
 # Copy examples.
 rsync -rv "${ROOT_DIR}/examples" "${TARGET_DIR}"
 
+# Local Development for Auto-generation
 for provider in $(git status -s | grep -E 'modules|examples' | cut -d / -f 2 | grep -vE 'null|template|localfile|.git*' | sort | uniq | sed s/^$/${DEFAULT_PROVIDER}/g);
 do
   cd "${TARGET_DIR}/examples/${provider}";
@@ -35,3 +36,15 @@ done
 
 # Print Output
 cat ${TARGET_OUTPUT}
+
+# Override Generation
+if ! [ -z "$DEFAULT_PROVIDER" ]; then
+  cd "${TARGET_DIR}/examples/${DEFAULT_PROVIDER}";
+  terraform init;
+  cat >> ${TARGET_OUTPUT} <<EOF
+--------------------------------------------------------------------
+$(echo ${DEFAULT_PROVIDER} | tr a-z A-Z): ${TARGET_DIR}/examples/${DEFAULT_PROVIDER}
+EOF
+# Print Output
+cat ${TARGET_OUTPUT}
+fi
