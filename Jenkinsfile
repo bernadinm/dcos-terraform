@@ -10,7 +10,6 @@ pipeline {
                 echo "My client secret is $AZURE_CLIENT_SECRET"
                 echo "My tenant id is $AZURE_TENANT_ID"
                 echo "My subscription id is $AZURE_SUBSCRIPTION_ID"
-                echo "Testing 123"
             }
         }
         stage('Terraform apply') {
