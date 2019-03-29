@@ -35,7 +35,7 @@ Once you are done, type the following command to create the local testing enviro
 $ make tenv
 ```
 
-*Tip:* You can also provide use the `PROVIDER=<provider> make tenv` like `azurerm` or `gcp` to test this them only.
+*Tip:* You can also provide use the `PROVIDER=<provider> make tenv` like `azurerm` or `gcp` _or both_ to test this them only.
 
 The command will output a directory path in the end.
 The directory should have Terraform initialized with your locally modified Terraform modules.
