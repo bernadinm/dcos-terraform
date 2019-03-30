@@ -6,10 +6,11 @@ pipeline {
         stage('Terraform Testing Cred') {
             agent { label 'terraform' }
             steps {
-                echo "My client id is $AZURE_CLIENT_ID"
-                echo "My client secret is $AZURE_CLIENT_SECRET"
-                echo "My tenant id is $AZURE_TENANT_ID"
-                echo "My subscription id is $AZURE_SUBSCRIPTION_ID"
+                  echo "Testing 1234"
+//                echo "My client id is $AZURE_CLIENT_ID"
+//                echo "My client secret is $AZURE_CLIENT_SECRET"
+//                echo "My tenant id is $AZURE_TENANT_ID"
+//                echo "My subscription id is $AZURE_SUBSCRIPTION_ID"
             }
         }
         stage('Terraform apply') {
