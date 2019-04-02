@@ -23,15 +23,14 @@ pipeline {
                     }
                 }
         }
-//        stage('Terraform Testing GCP Creds') {
-//            agent { label 'terraform' }
-//            steps {
-//                echo "My client id is $AZURE_CLIENT_ID"
-//                echo "My client secret is $AZURE_CLIENT_SECRET"
-//                echo "My tenant id is $AZURE_TENANT_ID"
-//                echo "My subscription id is $AZURE_SUBSCRIPTION_ID"
-//            }
-//        }
+       stage('Terraform Testing GCP Creds') {
+           agent { label 'terraform' }
+           steps {
+               withCredentials([[$class: 'FileBinding', credentialsId: 'demo-bliss', variable: 'GOOGLE_APPLICATION_CREDENTIALS']]) {
+               sh 'echo "${GOOGLE_APPLICATION_CREDENTIALS}"' // returns ****
+           }
+        }
+       }
 //        stage('Terraform apply') {
 //            agent { label 'terraform' }
 //            steps {
