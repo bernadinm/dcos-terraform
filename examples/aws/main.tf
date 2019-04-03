@@ -3,13 +3,22 @@ provider "aws" {
   region = "us-east-1"
 }
 
+data "http" "whatismyip" {
+  url = "http://whatismyip.akamai.com/"
+}
+
+resource "random_id" "cluster_name" {
+  prefix      = "dcos-terraform-"
+  byte_length = 4
+}
+
 module "dcos" {
   source  = "../../modules/aws/dcos"
   version = "~> 0.1"
 
-  cluster_name        = "dcos-terraform-test"
+  cluster_name        = "${random_id.cluster_name.hex}"
   ssh_public_key_file = "./ssh-key.pub"
-  admin_ips           = ["0.0.0.0/0"]
+  admin_ips           = ["${data.http.whatismyip.body}/32"]
 
   num_masters        = "1"
   num_private_agents = "1"

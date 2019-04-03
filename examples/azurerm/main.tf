@@ -7,12 +7,17 @@ data "http" "whatismyip" {
   url = "http://whatismyip.akamai.com/"
 }
 
+resource "random_id" "cluster_name" {
+  prefix      = "dcos-terraform-"
+  byte_length = 4
+}
+
 module "dcos" {
   source  = "../../modules/azurerm/dcos"
   version = "~> 0.1"
 
   dcos_instance_os    = "coreos_1855.5.0"
-  cluster_name        = "my-dcos"
+  cluster_name        = "${random_id.cluster_name.hex}"
   ssh_public_key_file = "./ssh-key.pub"
   admin_ips           = ["${data.http.whatismyip.body}/32"]
   location            = "West US"
