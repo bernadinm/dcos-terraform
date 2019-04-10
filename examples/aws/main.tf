@@ -22,9 +22,11 @@ module "dcos" {
 
   num_masters        = "1"
   num_private_agents = "1"
-  num_public_agents  = "0"
+  num_public_agents  = "1"
 
   dcos_version = "1.12.1"
+
+  oauth_enabled                = "false"
 
   dcos_instance_os             = "centos_7.5"
   bootstrap_instance_type      = "t2.medium"

@@ -23,8 +23,10 @@ module "dcos" {
   location            = "West US"
 
   num_masters        = "1"
-  num_private_agents = "2"
+  num_private_agents = "1"
   num_public_agents  = "1"
+
+  oauth_enabled = "false"
 
   dcos_version = "1.12.1"
 
