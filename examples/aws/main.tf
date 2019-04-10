@@ -26,7 +26,7 @@ module "dcos" {
 
   dcos_version = "1.12.1"
 
-  oauth_enabled                = "false"
+  dcos_oauth_enabled = "false"
 
   dcos_instance_os             = "centos_7.5"
   bootstrap_instance_type      = "t2.medium"

@@ -26,7 +26,7 @@ module "dcos" {
   num_private_agents = "1"
   num_public_agents  = "1"
 
-  oauth_enabled = "false"
+  dcos_oauth_enabled = "false"
 
   dcos_version = "1.12.1"
 
