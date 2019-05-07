@@ -1,6 +1,5 @@
 # Configure the Google Cloud provider
 provider "google" {
-  project = ""
   region  = "us-west1"
 }
 
